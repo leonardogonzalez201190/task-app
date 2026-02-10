@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { API_URL } from './constants'
 import Form from './components/Form'
 import TaskList from './components/TaskList'
+
+const API_URL = import.meta.env.VITE_API_URL
 
 function App() {
   const [users, setUsers] = useState([])
