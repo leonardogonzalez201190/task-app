@@ -6,7 +6,8 @@ export default function Form({
     onCreate,
     onUpdate,
     userId,
-    task
+    task,
+    onClear
 }) {
 
     const createTask = async (e) => {
@@ -61,6 +62,8 @@ export default function Form({
                 <button className="form-button">
                     {task ? 'Update' : 'Create'}
                 </button>
+
+                {task && <button className="form-button-clear" onClick={onClear}>Clear</button>}
             </form>
         </div>
     )

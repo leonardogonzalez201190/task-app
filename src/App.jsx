@@ -90,6 +90,7 @@ function App() {
             task={edit}
             onUpdate={onUpdateTask}
             onCreate={() => fetchTasks(userId)}
+            onClear={() => setEdit(null)}
             userId={userId}
           />
         )}
