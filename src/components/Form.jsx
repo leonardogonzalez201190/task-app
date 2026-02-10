@@ -1,3 +1,5 @@
+import '../styles/Form.css'
+
 const API_URL = import.meta.env.VITE_API_URL
 
 export default function Form({
@@ -9,6 +11,7 @@ export default function Form({
 
     const createTask = async (e) => {
         e.preventDefault()
+
         const title = e.target.title.value
         const description = e.target.description.value
 
@@ -36,34 +39,27 @@ export default function Form({
     }
 
     return (
-        <div>
-            <h3>Crear tarea</h3>
-            <form style={{ display: 'flex', flexDirection: 'column', gap: 10 }} onSubmit={createTask}>
+        <div className="box-container">
+            <h3 className="header-title">{task ? 'Update' : 'Create'}</h3>
+
+            <form className="form" onSubmit={createTask}>
                 <input
+                    className="form-input"
                     defaultValue={task?.title}
                     required
-                    placeholder="Título"
+                    placeholder="Title"
                     name="title"
-                    style={{
-                        padding: 8,
-                    }}
-                />
-                <input
-                    defaultValue={task?.description}
-                    placeholder="Descripción"
-                    name="description"
-                    style={{
-                        padding: 8,
-                    }}
                 />
 
-                <button
-                    style={{
-                        padding: '8px 16px',
-                        cursor: 'pointer'
-                    }}
-                >
-                    {task ? 'Actualizar' : 'Crear'}
+                <input
+                    className="form-input"
+                    defaultValue={task?.description}
+                    placeholder="Description"
+                    name="description"
+                />
+
+                <button className="form-button">
+                    {task ? 'Update' : 'Create'}
                 </button>
             </form>
         </div>

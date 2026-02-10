@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import Form from './components/Form'
 import TaskList from './components/TaskList'
+import './App.css'
 
 const API_URL = import.meta.env.VITE_API_URL
 
 function App() {
   const [users, setUsers] = useState([])
   const [tasks, setTasks] = useState([])
-  const [userId, setUserId] = useState('');
-  const [edit, setEdit] = useState(null);
+  const [userId, setUserId] = useState('')
+  const [edit, setEdit] = useState(null)
 
   useEffect(() => {
     fetchUsers()
@@ -55,21 +56,15 @@ function App() {
   }
 
   return (
-    <div style={{
-      padding: 20,
-      fontFamily: 'Arial',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }}>
-      <h1>Task App</h1>
+    <div className="app-container">
+      <h1 className="app-title">Task App</h1>
 
       <select
+        className="user-select"
         value={userId}
         onChange={e => onUserSelect(e.target.value)}
-        style={{ padding: 8, marginRight: 10 }}
       >
-        <option value="">Selecciona usuario</option>
+        <option value="">Select user</option>
         {users.map(u => (
           <option key={u.userId} value={u.userId}>
             {u.name}
@@ -77,28 +72,30 @@ function App() {
         ))}
       </select>
 
-      <div style={{ marginTop: 20, display: 'flex', alignItems: 'flex-start', gap: 20 }}>
+      <div className="app-content">
+        {userId && (
+          <TaskList
+            tasks={tasks}
+            users={users}
+            userId={userId}
+            onStatusChange={onUpdateTask}
+            onUserAssign={onUpdateTask}
+            onEdit={setEdit}
+            onDelete={(taskId) => onDeleteTask(taskId)}
+          />
+        )}
+
         {userId && (
           <Form
             task={edit}
             onUpdate={onUpdateTask}
             onCreate={() => fetchTasks(userId)}
-            userId={userId} />
-        )}
-
-        {userId && (
-          <TaskList
-            tasks={tasks}
-            users={users}
-            onStatusChange={onUpdateTask}
-            onUserAssign={onUpdateTask}
-            onEdit={setEdit}
-            onDelete={(task) => onDeleteTask(task)} />
+            userId={userId}
+          />
         )}
       </div>
     </div>
   )
 }
-
 
 export default App

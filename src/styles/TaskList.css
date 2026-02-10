@@ -1,0 +1,52 @@
+
+
+/* Tabla */
+.task-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Encabezados */
+.task-th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    background-color: #f4f4f4;
+    text-align: left;
+}
+
+/* Celdas */
+.task-td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+/* Select */
+.task-select {
+    padding: 4px;
+}
+
+/* Botones base */
+.task-button {
+    padding: 6px 12px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Botón editar */
+.task-button-edit {
+    background-color: #3498db;
+}
+
+/* Botón eliminar */
+.task-button-delete {
+    background-color: #e74c3c;
+}
+
+/* Botón deshabilitado */
+.task-button-disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
